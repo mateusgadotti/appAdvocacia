@@ -276,7 +276,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Cliente.cshtml" />
     <Content Include="Views\Agenda\Agenda.cshtml" />
     <Content Include="Views\Processos\Processos.cshtml" />
     <Content Include="Views\Varas\Varas.cshtml" />
