@@ -10,9 +10,9 @@ namespace AppAdvocacia.Controllers
     public class ClienteController : Controller
     {
         // GET: Cliente
-        public ActionResult Index()
+        public ActionResult Cliente()
         {
-            var cliente = new Cliente() { Name = "Cliente"};
+            var cliente = new Cliente() { Nome = "Cliente"};
             return View(cliente);
         }
     }
