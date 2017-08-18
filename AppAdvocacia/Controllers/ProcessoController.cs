@@ -7,7 +7,7 @@ using AppAdvocacia.Models;
 
 namespace AppAdvocacia.Controllers
 {
-    public class ProcessosController : Controller
+    public class ProcessoController : Controller
     {
         // GET: Processos
         public ActionResult Processos()

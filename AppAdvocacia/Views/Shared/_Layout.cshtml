@@ -21,9 +21,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Cliente", "Cliente", "Cliente")</li>
-                    <li>@Html.ActionLink("Agenda", "Agenda", "Agenda")</li>
-                    <li>@Html.ActionLink("Processos", "Processos", "Processos")</li>
+                    <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+                    <li>@Html.ActionLink("Agenda", "Index", "Agenda")</li>
+                    <li>@Html.ActionLink("Processos", "Index", "Processos")</li>
                     <li>@Html.ActionLink("Varas", "Varas", "Varas")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -35,7 +35,7 @@
         <hr />
         <footer>
             <center>
-                <p>Mateus Gadotti - &copy; @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</p>
+                <p>Mateus Gadotti - &copy; @DateTime.Now.Year</p>
             </center>
         </footer>
     </div>
