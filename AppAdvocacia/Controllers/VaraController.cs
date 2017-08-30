@@ -8,20 +8,21 @@ using AppAdvocacia.ViewModels;
 
 namespace AppAdvocacia.Controllers
 {
-    public class ProcessoController : Controller
+    public class VaraController : Controller
     {
-        public List<Processo> Processo = new List<Processo>
+
+        public List<Vara> Vara = new List<Vara>
         {
-            new Processo {Nome = "Gyzz", Id = 1},
-            new Processo {Nome = "Jeff Seid", Id = 2}
+            new Vara {Nome = "jaragua", Id = 1},
+            new Vara {Nome = "joinva", Id = 2}
         };
 
         // GET: Customers
         public ActionResult Index()
         {
-            var viewModel = new ProcessoIndexViewModel
+            var viewModel = new VaraIndexViewModel
             {
-                Processo = Processo
+                Vara = Vara
             };
 
             return View(viewModel);
@@ -29,14 +30,15 @@ namespace AppAdvocacia.Controllers
 
         public ActionResult Details(int id)
         {
-            if (Processo.Count < id)
+            if (Vara.Count < id)
             {
                 return HttpNotFound();
             }
 
-            var processo = Processo[id - 1];
+            var vara = Vara[id - 1];
 
-            return View(processo);
+            return View(vara);
         }
+
     }
 }

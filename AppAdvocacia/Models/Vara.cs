@@ -5,12 +5,12 @@ using System.Web;
 
 namespace AppAdvocacia.Models
 {
-    public class Varas
+    public class Vara
     {
 
-        public int Id { get; set; }
+        public String Nome { get; set; }
 
-        public string Name { get; set; }
+        public int Id { get; set; }
 
 
     }

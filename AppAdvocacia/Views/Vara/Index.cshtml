@@ -1,22 +1,21 @@
-﻿
-@model AppAdvocacia.ViewModels.AgendaIndexViewModel
+﻿@model AppAdvocacia.ViewModels.VaraIndexViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Agenda</h2>
+<h2>Processo</h2>
 
-@if (@Model.Agendas.Count > 0)
+@if (@Model.Vara.Count > 0)
 {
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Agenda</th></tr>
+            <tr><th>Varas</th></tr>
         </thead>
         <tbody>
-            @foreach (var agenda in Model.Agendas)
+            @foreach (var vara in Model.Vara)
             {
-                <tr><td>@Html.ActionLink(@agenda.nome, "Details", new { agenda.Id })</td></tr>
+                <tr><td>@Html.ActionLink(@vara.Nome, "Details", new { vara.Id })</td></tr>
             }
         </tbody>
     </table>
@@ -25,3 +24,4 @@ else
 {
     <p>We don't have any customers yet.</p>
 }
+

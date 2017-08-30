@@ -25,6 +25,8 @@ namespace AppAdvocacia.Models
         {
         }
 
+        public object Customers { get; internal set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
