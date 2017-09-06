@@ -20,12 +20,17 @@ namespace AppAdvocacia.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Agenda> Agenda { get; set; }
+        public DbSet<Vara> Vara { get; set; }
+        public DbSet<Processo> Processo { get; set; }
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
-        public object Customers { get; internal set; }
+        
 
         public static ApplicationDbContext Create()
         {
