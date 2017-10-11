@@ -1,28 +1,33 @@
-﻿
-@model AppAdvocacia.ViewModels.ClienteIndexViewModel
+﻿@model IEnumerable<AppAdvocacia.Models.Cliente>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Agenda</h2>
+<h2>Clientes</h2>
 
-@if (@Model.Clientes.Count > 0)
+@if (!Model.Any())
 {
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr><th>Cliente
-                </th><th></th></tr>
-        </thead>
-        <tbody>
-            @foreach (var cliente in Model.Clientes)
-            {
-                <tr><td>@Html.ActionLink(@cliente.Nome, "Details", new { cliente.Id })</td></tr>
-            }
-        </tbody>
-    </table>
+    <p>Não temos nenhum cliente ainda.</p>
 }
 else
 {
-    <p>We don't have any customers yet.</p>
+    <p>
+        @Html.ActionLink("Novo Cliente", "New", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@cliente.Nome, "Edit", new { cliente.Id })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

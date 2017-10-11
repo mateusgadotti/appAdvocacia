@@ -10,33 +10,79 @@ namespace AppAdvocacia.Controllers
 {
     public class ProcessoController : Controller
     {
-        public List<Processo> Processo = new List<Processo>
+
+        private ApplicationDbContext _context;
+
+        public ProcessoController()
         {
-            new Processo {Nome = "Gyzz", Id = 1},
-            new Processo {Nome = "Jeff Seid", Id = 2}
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Customers
         public ActionResult Index()
         {
-            var viewModel = new ProcessoIndexViewModel
-            {
-                Processo = Processo
-            };
-
-            return View(viewModel);
+            var processo = _context.Processo.ToList();
+            return View(processo);
         }
 
         public ActionResult Details(int id)
         {
-            if (Processo.Count < id)
-            {
-                return HttpNotFound();
-            }
+            var processo = _context.Processo.SingleOrDefault(c => c.Id == id);
 
-            var processo = Processo[id - 1];
+            if (processo == null)
+                return HttpNotFound();
 
             return View(processo);
         }
+
+        public ActionResult New()
+        {
+
+            var viewModel = new ProcessoFormViewModel { };
+
+            return View("ProcessoForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Processo processo) // recebemos um cliente
+        {
+            if (processo.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Processo.Add(processo);
+            }
+            else
+            {
+                var customerInDb = _context.Processo.Single(c => c.Id == processo.Id);
+
+                customerInDb.Nome = processo.Nome;
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var processo = _context.Processo.SingleOrDefault(c => c.Id == id);
+
+            if (processo == null)
+                return HttpNotFound();
+
+            var viewModel = new ProcessoFormViewModel
+            {
+                Processo = processo,
+            };
+
+            return View("ProcessoForm", viewModel);
+        }
+
     }
 }

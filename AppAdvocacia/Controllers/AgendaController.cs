@@ -11,33 +11,79 @@ namespace AppAdvocacia.Controllers
     public class AgendaController : Controller
     {
 
-        public List<Agenda> Agendas = new List<Agenda>
+        private ApplicationDbContext _context;
+
+        public AgendaController()
         {
-            new Agenda {nome = "Ir ao mercado", Id = 1},
-            new Agenda {nome = "Ir ao banheiro", Id = 2}
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Customers
         public ActionResult Index()
         {
-            var viewModel = new AgendaIndexViewModel
-            {
-                Agendas = Agendas
-            };
-
-            return View(viewModel);
+            var agenda = _context.Agenda.ToList();
+            return View(agenda);
         }
 
         public ActionResult Details(int id)
         {
-            if (Agendas.Count < id)
-            {
-                return HttpNotFound();
-            }
+            var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);
 
-            var agenda = Agendas[id - 1];
+            if (agenda == null)
+                return HttpNotFound();
 
             return View(agenda);
         }
+
+        public ActionResult New()
+        {
+
+            var viewModel = new AgendaFormViewModel { };
+
+            return View("AgendaForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Agenda agenda) // recebemos um cliente
+        {
+            if (agenda.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Agenda.Add(agenda);
+            }
+            else
+            {
+                var customerInDb = _context.Agenda.Single(c => c.Id == agenda.Id);
+
+                customerInDb.Nome = agenda.Nome;
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);
+
+            if (agenda == null)
+                return HttpNotFound();
+
+            var viewModel = new AgendaFormViewModel
+            {
+                Agenda = agenda,
+            };
+
+            return View("AgendaForm", viewModel);
+        }
+
+
     }
 }

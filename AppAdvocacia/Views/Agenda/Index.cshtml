@@ -1,27 +1,33 @@
-﻿
-@model AppAdvocacia.ViewModels.AgendaIndexViewModel
+﻿@model IEnumerable<AppAdvocacia.Models.Agenda>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Agenda</h2>
+<h2>Clientes</h2>
 
-@if (@Model.Agendas.Count > 0)
+@if (!Model.Any())
 {
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr><th>Agenda</th></tr>
-        </thead>
-        <tbody>
-            @foreach (var agenda in Model.Agendas)
-            {
-                <tr><td>@Html.ActionLink(@agenda.nome, "Details", new { agenda.Id })</td></tr>
-            }
-        </tbody>
-    </table>
+    <p>Não temos nada agendado ainda.</p>
 }
 else
 {
-    <p>We don't have any customers yet.</p>
+    <p>
+        @Html.ActionLink("Novo Agendamento", "New", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Agenda</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var agenda in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@agenda.Nome, "Edit", new { agenda.Id })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

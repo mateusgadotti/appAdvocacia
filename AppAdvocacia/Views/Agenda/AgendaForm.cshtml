@@ -1,0 +1,16 @@
+﻿@model AppAdvocacia.ViewModels.AgendaFormViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Agenda"))
+{
+    @Html.HiddenFor(m => m.Agenda.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Agenda.Nome)
+        @Html.TextBoxFor(m => m.Agenda.Nome, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

@@ -1,4 +1,4 @@
-﻿@model AppAdvocacia.ViewModels.VaraIndexViewModel
+﻿@model IEnumerable<AppAdvocacia.Models.Vara>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,22 +6,28 @@
 
 <h2>Processo</h2>
 
-@if (@Model.Vara.Count > 0)
+@if (!Model.Any())
 {
+    <p>Não temos nenhuma vara registrada.</p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Nova Vara", "New", null, new { @class = "btn btn-primary" })
+    </p>
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Varas</th></tr>
+            <tr>
+                <th>Vara</th>
+            </tr>
         </thead>
         <tbody>
-            @foreach (var vara in Model.Vara)
+            @foreach (var vara in Model)
             {
-                <tr><td>@Html.ActionLink(@vara.Nome, "Details", new { vara.Id })</td></tr>
+                <tr>
+                    <td>@Html.ActionLink(@vara.Nome, "Edit", new { vara.Id })</td>
+                </tr>
             }
         </tbody>
     </table>
 }
-else
-{
-    <p>We don't have any customers yet.</p>
-}
-
