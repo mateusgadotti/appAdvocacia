@@ -24,6 +24,7 @@ namespace AppAdvocacia.Models
         public DbSet<Agenda> Agenda { get; set; }
         public DbSet<Vara> Vara { get; set; }
         public DbSet<Processo> Processo { get; set; }
+        public DbSet<Advogado> Advogado { get; set; }
 
 
         public ApplicationDbContext()

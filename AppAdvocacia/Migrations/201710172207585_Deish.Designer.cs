@@ -7,13 +7,13 @@ namespace AppAdvocacia.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class migration4 : IMigrationMetadata
+    public sealed partial class Deish : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migration4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Deish));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710110031356_migration4"; }
+            get { return "201710172207585_Deish"; }
         }
         
         string IMigrationMetadata.Source

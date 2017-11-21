@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AppAdvocacia.Models.Agenda>
+﻿@model IEnumerable<AppAdvocacia.Models.Advogado>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,24 +8,24 @@
 
 @if (!Model.Any())
 {
-    <p>Não temos nada agendado ainda.</p>
+    <p>Não temos nenhum advogado cadastrado ainda.</p>
 }
 else
 {
     <p>
-        @Html.ActionLink("Novo Agendamento", "New", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Novo Advogado", "New", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Agenda</th>
+                <th>Advogado</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var agenda in Model)
+            @foreach (var advogado in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@agenda.Tarefa, "Edit", new { agenda.Id })</td>
+                    <td>@Html.ActionLink(@advogado.Nome, "Edit", new { advogado.Id })</td>
                 </tr>
             }
         </tbody>

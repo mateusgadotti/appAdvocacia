@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
-
 
 namespace AppAdvocacia.Models
 {
-    public class Agenda
+    public class Advogado
     {
 
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
         [Display(Name = "Nome")]
-        public string Tarefa { get; set; }
-        public Advogado Advogado { get; set; }
+        public string Nome { get; set; }
+        [Display(Name = "CPF")]
+        public string CPF { get; set; }
 
     }
 }

@@ -1,19 +1,18 @@
-﻿using System;
+﻿using AppAdvocacia.Models;
+using AppAdvocacia.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AppAdvocacia.Models;
-using AppAdvocacia.ViewModels;
 
 namespace AppAdvocacia.Controllers
 {
-    public class AgendaController : Controller
+    public class AdvogadoController : Controller
     {
-
         private ApplicationDbContext _context;
 
-        public AgendaController()
+        public AdvogadoController()
         {
             _context = new ApplicationDbContext();
         }
@@ -26,41 +25,41 @@ namespace AppAdvocacia.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var agenda = _context.Agenda.ToList();
-            return View(agenda);
+            var advogado = _context.Advogado.ToList();
+            return View(advogado);
         }
 
         public ActionResult Details(int id)
         {
-            var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);
+            var advogado = _context.Advogado.SingleOrDefault(c => c.Id == id);
 
-            if (agenda == null)
+            if (advogado == null)
                 return HttpNotFound();
 
-            return View(agenda);
+            return View(advogado);
         }
 
         public ActionResult New()
         {
 
-            var viewModel = new AgendaFormViewModel { };
+            var viewModel = new AdvogadoFormViewModel { };
 
-            return View("AgendaForm", viewModel);
+            return View("Advogado", viewModel);
         }
 
         [HttpPost] // só será acessada com POST
-        public ActionResult Save(Agenda agenda) // recebemos um cliente
+        public ActionResult Save(Advogado advogado) // recebemos um advogado
         {
-            if (agenda.Id == 0)
+            if (advogado.Id == 0)
             {
                 // armazena o cliente em memória
-                _context.Agenda.Add(agenda);
+                _context.Advogado.Add(advogado);
             }
             else
             {
-                var customerInDb = _context.Agenda.Single(c => c.Id == agenda.Id);
+                var customerInDb = _context.Advogado.Single(c => c.Id == advogado.Id);
 
-                customerInDb.Tarefa = agenda.Tarefa;
+                customerInDb.Nome = advogado.Nome;
             }
 
             // faz a persistência
@@ -71,19 +70,18 @@ namespace AppAdvocacia.Controllers
 
         public ActionResult Edit(int id)
         {
-            var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);
+            var advogado = _context.Advogado.SingleOrDefault(c => c.Id == id);
 
-            if (agenda == null)
+            if (advogado == null)
                 return HttpNotFound();
 
-            var viewModel = new AgendaFormViewModel
+            var viewModel = new AdvogadoFormViewModel
             {
-                Agenda = agenda,
+                Advogado = advogado,
             };
 
-            return View("AgendaForm", viewModel);
+            return View("AdvogadoForm", viewModel);
         }
-
 
     }
 }

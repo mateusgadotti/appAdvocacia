@@ -10,7 +10,6 @@ namespace AppAdvocacia.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "AppAdvocacia.Models.ApplicationDbContext";
         }
 
         protected override void Seed(AppAdvocacia.Models.ApplicationDbContext context)
